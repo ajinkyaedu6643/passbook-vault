@@ -2,6 +2,8 @@ package com.passbookvault.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,8 +32,11 @@ public class Document {
 	
 	private String remark;
 	
+	private String originalFileName;
+	
 	@ManyToOne
 	@JoinColumn(name = "account_id")
+	@JsonIgnore
 	private BankAccount bankAccount;
 	
 	public void prePersist() {
@@ -99,6 +104,22 @@ public class Document {
 	}
 
 	public void setBankaccount(BankAccount bankAccount) {
+		this.bankAccount = bankAccount;
+	}
+
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
+
+	public BankAccount getBankAccount() {
+		return bankAccount;
+	}
+
+	public void setBankAccount(BankAccount bankAccount) {
 		this.bankAccount = bankAccount;
 	}
 	
