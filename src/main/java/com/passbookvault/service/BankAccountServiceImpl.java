@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.passbookvault.entity.BankAccount;
+import com.passbookvault.exception.ResourceNotFoundException;
 import com.passbookvault.repository.BankAccountRepository;
 
 @Service
@@ -25,7 +26,7 @@ public class BankAccountServiceImpl implements BankAccountService {
 	public BankAccount getAccount(Long id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id)
-				.orElseThrow(()-> new RuntimeException("Account not found!"));
+				.orElseThrow(()-> new ResourceNotFoundException("Account not found with id: "+id));
 	}
 
 	@Override
