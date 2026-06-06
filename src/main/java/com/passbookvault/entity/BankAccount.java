@@ -1,7 +1,9 @@
 package com.passbookvault.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -65,6 +68,9 @@ public class BankAccount {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
+	@OneToMany(mappedBy = "bankAccount", cascade = CascadeType.ALL)
+	private List<Document> documents;
+	
 	@PrePersist
 	public void prePersist() {
 		createdAt = LocalDateTime.now();
@@ -79,6 +85,7 @@ public class BankAccount {
 	public void preUpdate() {
 		updatedAt = LocalDateTime.now();
 	}
+	
 
 	public Long getId() {
 		return id;
@@ -199,6 +206,15 @@ public class BankAccount {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
+	
 	
 	//Getter and setters
 	
