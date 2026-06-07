@@ -2,6 +2,7 @@ package com.passbookvault.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,10 +49,22 @@ public class BankAccountController {
 	@Operation(summary = "Get All bank accounts",
 			description = "Returns all bank accounts available in the system")
 	@GetMapping
-	public ResponseEntity<List<BankAccount>> getAllAcounts(){
+	public ResponseEntity<List<BankAccount>> getAccounts(){
+		return ResponseEntity.ok(service.getAccounts());
+	}
+	@Operation(
+		    summary = "Get paginated accounts",
+		    description = "Returns paginated and sorted bank account records"
+		)
+	@GetMapping("/paged")
+	public ResponseEntity<Page<BankAccount>> getAllAcounts(
+	        @RequestParam(defaultValue = "0") int page,
+	        @RequestParam(defaultValue = "10") int size,
+	        @RequestParam(defaultValue = "id") String sortBy,
+	        @RequestParam(defaultValue = "asc") String sortDir){
 		
 		return ResponseEntity.ok(
-				service.getAllAcounts());
+				service.getAllAcounts(page, size, sortBy, sortDir));
 	}
 	
 	@Operation(

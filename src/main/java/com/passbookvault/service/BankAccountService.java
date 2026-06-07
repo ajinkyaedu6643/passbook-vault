@@ -2,6 +2,8 @@ package com.passbookvault.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.passbookvault.entity.AccountStatus;
 import com.passbookvault.entity.BankAccount;
 
@@ -11,7 +13,12 @@ public interface BankAccountService {
 	
 	BankAccount getAccount(Long id);
 	
-	List<BankAccount> getAllAcounts();
+	Page<BankAccount> getAllAcounts(
+			int page,
+			int size,
+			String sortBy,
+			String sortDir);
+	List<BankAccount> getAccounts();
 	
 	BankAccount updateAccount(Long id, BankAccount account);
 	
