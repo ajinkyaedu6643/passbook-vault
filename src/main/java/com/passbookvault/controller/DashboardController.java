@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.passbookvault.dto.DashboardSummaryDto;
 import com.passbookvault.service.DashboardService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(
+	    name = "Dashboard",
+	    description = "Dashboard and reporting APIs"
+	)
 @RestController
 @RequestMapping("/api/dashboard")
 public class DashboardController {
@@ -16,6 +23,10 @@ public class DashboardController {
 	@Autowired
 	private DashboardService service;
 	
+	@Operation(
+		    summary = "Dashboard summary",
+		    description = "Returns summary statistics such as total accounts and documents"
+		)
 	@GetMapping("/summary")
 	public ResponseEntity<DashboardSummaryDto> getSummary(){
 		return ResponseEntity.ok(

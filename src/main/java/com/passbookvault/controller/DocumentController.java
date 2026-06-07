@@ -20,6 +20,13 @@ import com.passbookvault.entity.Document;
 import com.passbookvault.exception.ResourceNotFoundException;
 import com.passbookvault.service.DocumentService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+@Tag(
+	    name = "Document Management",
+	    description = "APIs for uploading and downloading account documents"
+	)
 @RestController
 @RequestMapping("/api/documents")
 public class DocumentController {
@@ -37,6 +44,10 @@ public class DocumentController {
 		return ResponseEntity.ok(document);
 	}
 	
+	@Operation(
+		    summary = "Download document",
+		    description = "Downloads a document using its document ID"
+		)
 	@GetMapping("/{id}/download")
 	ResponseEntity<FileSystemResource> downloadDocument(
 			@PathVariable Long id) throws Exception{
