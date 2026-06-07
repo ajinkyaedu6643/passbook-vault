@@ -67,4 +67,13 @@ public class DocumentServiceImpl implements DocumentService {
 		}
 	}
 
+	@Override
+	public Document getDocumentById(Long id) {
+		// TODO Auto-generated method stub
+		return documentRepository.findById(id)
+				.orElseThrow(
+						()-> new ResourceNotFoundException(
+								"Document not found with id: "+ id));
+	}
+
 }

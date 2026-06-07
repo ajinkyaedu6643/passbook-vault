@@ -9,4 +9,5 @@ public interface DocumentService {
 			Long accountId,
 			MultipartFile file,
 			String remarks);
+	Document getDocumentById(Long id);
 }
