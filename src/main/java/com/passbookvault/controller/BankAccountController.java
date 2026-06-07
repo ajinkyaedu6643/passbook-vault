@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.passbookvault.entity.AccountStatus;
 import com.passbookvault.entity.BankAccount;
 import com.passbookvault.service.BankAccountService;
 
@@ -62,4 +64,44 @@ public class BankAccountController {
 		return ResponseEntity.ok(
 				"Account deleted successfully");
 	}
+	
+	//Search and filter Module
+	
+	@GetMapping("/search/bank")
+	public ResponseEntity<List<BankAccount>> searchBank(
+			@RequestParam String name){
+		return ResponseEntity.ok(service.searchByBankName(name));
+	}
+	
+	@GetMapping("/search/holder")
+	public ResponseEntity<List<BankAccount>> searchByHolder(
+			@RequestParam String holderName){
+		return ResponseEntity.ok(
+				service.searchByHolderName(holderName));
+	}
+	
+	@GetMapping("/search/ifsc")
+	public ResponseEntity<List<BankAccount>> searchByIfsc(
+			@RequestParam String ifsc){
+		return ResponseEntity.ok(
+				service.searchByIfsc(ifsc));
+	}
+	
+	@GetMapping("/search/accountStatus")
+	public ResponseEntity<List<BankAccount>> searchByStatus(
+			@RequestParam AccountStatus accountStatus){
+		
+		return ResponseEntity.ok(
+				service.serachByStatus(accountStatus));
+	}
+	
+	@GetMapping("/search/keyword")
+	public ResponseEntity<List<BankAccount>> searchByKeyword(
+			@RequestParam  String keyword){
+		return ResponseEntity.ok(
+				service.serachByKeyword(keyword));
+	}
+	
+	
+	
 }

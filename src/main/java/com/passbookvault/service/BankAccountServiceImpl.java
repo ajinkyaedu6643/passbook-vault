@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.passbookvault.entity.AccountStatus;
 import com.passbookvault.entity.BankAccount;
 import com.passbookvault.exception.ResourceNotFoundException;
 import com.passbookvault.repository.BankAccountRepository;
@@ -62,6 +63,31 @@ public class BankAccountServiceImpl implements BankAccountService {
 		// TODO Auto-generated method stub
 		repository.deleteById(id);
 
+	}
+	@Override
+	public List<BankAccount> searchByBankName(String bankName) {
+		// TODO Auto-generated method stub
+		return repository.findByBankNameContainingIgnoreCase(bankName);
+	}
+	@Override
+	public List<BankAccount> searchByHolderName(String holderName) {
+		// TODO Auto-generated method stub
+		return repository.findByAccountHolderNameContainingIgnoreCase(holderName);
+	}
+	@Override
+	public List<BankAccount> searchByIfsc(String ifsc) {
+		// TODO Auto-generated method stub
+		return repository.findByIfscCode(ifsc);
+	}
+	@Override
+	public List<BankAccount> serachByStatus(AccountStatus status) {
+		// TODO Auto-generated method stub
+		return repository.findByAccountStatus(status);
+	}
+	@Override
+	public List<BankAccount> serachByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return repository.searchByKeyword(keyword);
 	}
 
 }
