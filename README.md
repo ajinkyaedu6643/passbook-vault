@@ -1,20 +1,34 @@
 # Passbook Vault
 
-Passbook Vault is a Spring Boot based application for securely managing bank account information and associated documents such as passbook scans, cheque images, and account records.
+Passbook Vault is a Spring Boot based application for securely managing bank account information and associated documents such as passbook scans, cheque images, account records, and supporting documents.
 
 ## Current Release
 
-v0.1.0 (Pre-release)
+v0.2.0 (Pre-release)
 
 ## Features
 
+### Account Management
+
 * Bank Account CRUD Operations
-* Dashboard Summary API
-* Global Exception Handling
-* Document Metadata Management
+* Account Search & Filters
+* Universal Keyword Search
+
+### Document Management
+
 * Document Upload API
-* PostgreSQL Integration
+* Document Download API
+* Document Metadata Management
 * Local File Storage
+
+### Dashboard
+
+* Dashboard Summary API
+
+### Other Features
+
+* Global Exception Handling
+* PostgreSQL Integration
 
 ## Technology Stack
 
@@ -24,21 +38,44 @@ v0.1.0 (Pre-release)
 * PostgreSQL
 * Maven
 
-## Roadmap
+## Project Status
 
-### v0.2.0
+Current development stage: Pre-release
 
-* Document Download API
+Completed:
+
+* Account Management
+* Document Upload & Download
 * Search & Filters
+* Dashboard APIs
+
+## Roadmap
 
 ### v0.3.0
 
-* Authentication & Authorization
+* Docker Support
+* Swagger/OpenAPI Documentation
 
 ### v0.4.0
+
+* Authentication & Authorization (JWT)
+
+### v0.5.0
 
 * Frontend Application
 
 ### v1.0.0
 
 * Production Ready Release
+
+## Future Enhancements
+
+* User Management
+* Google Drive Backup
+* Role-Based Access Control
+* Audit Logging
+* Cloud Deployment
+
+## License
+
+MIT License
